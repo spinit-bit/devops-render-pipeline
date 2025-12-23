@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: devops-pipeline-app
+    env: docker
+    region: singapore # Closest free region to India
+    plan: free
+    branch: main
+    
+    # This tells Render to look for our Dockerfile
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+
+    # Health check (Render waits for this to pass before switching traffic)
+    healthCheckPath: /
+    
+    # Auto-deploy when we push to GitHub
+    autoDeploy: true
